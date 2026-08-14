@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tess Kern</title>
+<meta name="description" content="Tess Kern — plant breeding researcher applying data science and machine learning to crop systems. Research, projects, and CV." />
+<script>
+  try{
+    var tkt = localStorage.getItem('tk-theme');
+    if (tkt === 'light' || tkt === 'dark') document.documentElement.setAttribute('data-theme', tkt);
+  }catch(e){}
+</script>
+<style>
+  :root{
+    --bg: #efe8d8;
+    --bg-alt: #e4dcc5;
+    --bg-card: #f5f0e3;
+    --ink: #241f16;
+    --ink-soft: #5b543f;
+    --ink-faint: #85795a;
+    --green: #3c5c3a;
+    --green-deep: #2a4228;
+    --gold: #a86f1a;
+    --rule: #cabf9f;
+    --rule-strong: #b3a67e;
+    --focus: #2a4228;
+
+    --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Times New Roman', serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Consolas, 'Liberation Mono', monospace;
+
+    --content-w: 760px;
+    --wide-w: 920px;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #17130b;
+      --bg-alt: #1e1810;
+      --bg-card: #211b11;
+      --ink: #ece3cd;
+      --ink-soft: #bcaf8b;
+      --ink-faint: #8c8064;
+      --green: #7fae63;
+      --green-deep: #a7cf8d;
+      --gold: #e0a83f;
+      --rule: #3a331f;
+      --rule-strong: #4a4227;
+      --focus: #a7cf8d;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #17130b;
+    --bg-alt: #1e1810;
+    --bg-card: #211b11;
+    --ink: #ece3cd;
+    --ink-soft: #bcaf8b;
+    --ink-faint: #8c8064;
+    --green: #7fae63;
+    --green-deep: #a7cf8d;
+    --gold: #e0a83f;
+    --rule: #3a331f;
+    --rule-strong: #4a4227;
+    --focus: #a7cf8d;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--green-deep); }
+  :root[data-theme="dark"] a, @media (prefers-color-scheme: dark){ a{ color: var(--green); } }
+
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  img, svg{ max-width: 100%; display: block; }
+
+  .wrap{
+    max-width: var(--content-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .wrap-wide{
+    max-width: var(--wide-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- nav ---------- */
+  .fieldnav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .fieldnav-bar{
+    max-width: var(--wide-w);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 0 8px 0 12px;
+  }
+  .fieldnav-scroll{
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .fieldnav-inner{
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .fieldnav-inner::-webkit-scrollbar{ display: none; }
+  .fieldnav-fade{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--bg) 95%, transparent));
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .fieldnav-fade.show{ opacity: 1; }
+  .fieldnav a{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: var(--ink-soft);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .fieldnav a .stage{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+  }
+  .fieldnav a .label{
+    font-size: 12.5px;
+    font-weight: 600;
+  }
+  .fieldnav a.active{
+    border-bottom-color: var(--green);
+    color: var(--ink);
+  }
+  .fieldnav a:hover{ color: var(--ink); }
+
+  .fieldnav-controls{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+    padding-left: 10px;
+    border-left: 1px solid var(--rule);
+  }
+  .theme-toggle{
+    flex-shrink: 0;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-card);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .theme-toggle:hover{ border-color: var(--green); }
+
+  @media (max-width: 480px){
+    .fieldnav-bar{ padding: 0 6px 0 8px; }
+    .fieldnav a{ padding: 8px 10px; }
+    .fieldnav a .stage{ font-size: 10px; }
+    .fieldnav a .label{ font-size: 11.5px; }
+    .fieldnav-controls{ padding-left: 8px; margin-left: 4px; }
+    .theme-toggle{ width: 28px; height: 28px; }
+    .theme-toggle svg{ width: 14px; height: 14px; }
+  }
+  .theme-toggle:active{ transform: scale(0.92); }
+  .theme-toggle svg{
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    color: var(--ink-soft);
+    transition: opacity 0.35s ease, transform 0.45s ease;
+  }
+  .theme-toggle .icon-sun{ opacity: 1; transform: rotate(0deg) scale(1); }
+  .theme-toggle .icon-moon{ opacity: 0; transform: rotate(-90deg) scale(0.6); }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .theme-toggle .icon-sun{ opacity: 0; transform: rotate(90deg) scale(0.6); }
+    :root:not([data-theme="light"]) .theme-toggle .icon-moon{ opacity: 1; transform: rotate(0deg) scale(1); }
+  }
+  :root[data-theme="dark"] .theme-toggle .icon-sun{ opacity: 0; transform: rotate(90deg) scale(0.6); }
+  :root[data-theme="dark"] .theme-toggle .icon-moon{ opacity: 1; transform: rotate(0deg) scale(1); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    padding: 88px 0 72px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      115deg,
+      color-mix(in srgb, var(--green) 10%, transparent) 0px,
+      color-mix(in srgb, var(--green) 10%, transparent) 1.5px,
+      transparent 1.5px,
+      transparent 46px
+    );
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .hero-inner{
+    position: relative;
+    max-width: var(--wide-w);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 18px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.03;
+    margin: 0 0 20px;
+    text-wrap: balance;
+    color: var(--ink);
+  }
+  .hero-tag{
+    max-width: 46ch;
+    font-size: 1.14rem;
+    color: var(--ink-soft);
+    margin: 0 0 34px;
+    text-wrap: pretty;
+  }
+  .hero-meta{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    font-size: 14.5px;
+  }
+  .hero-meta span{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--ink-soft);
+  }
+  .hero-meta a{
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .hero-meta a:hover{ border-color: var(--green); }
+  .mark{
+    color: var(--green);
+    flex-shrink: 0;
+  }
+  .hero-glyph{
+    position: absolute;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    transform-origin: 50% 100%;
+    width: 128px;
+    opacity: 0.9;
+    animation: sway 7s ease-in-out infinite alternate;
+  }
+  @keyframes sway{
+    0%   { transform: translateY(-50%) rotate(-2deg); }
+    100% { transform: translateY(-50%) rotate(2deg); }
+  }
+  @media (max-width: 760px){ .hero-glyph{ display:none; } }
+
+  /* ---------- sections ---------- */
+  section{
+    padding: 76px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type{ border-bottom: none; }
+  h2{
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .section-sub{
+    color: var(--ink-faint);
+    font-size: 14.5px;
+    margin: 0 0 40px;
+  }
+  .prose p{ max-width: 62ch; }
+  .prose p + p{ margin-top: 14px; }
+
+  /* ---------- education ---------- */
+  .edu-grid{
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 700px){ .edu-grid{ grid-template-columns: 1fr; } }
+
+  .card{
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 22px 24px;
+    border-radius: 3px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover{
+    transform: translateY(-3px);
+    border-color: var(--green);
+  }
+  .card h3{
+    font-family: var(--font-display);
+    font-size: 1.18rem;
+    font-weight: 700;
+    margin: 0 0 3px;
+  }
+  .card .place{
+    font-size: 13.5px;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .card .stat{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--green-deep);
+    background: color-mix(in srgb, var(--green) 14%, transparent);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-bottom: 12px;
+  }
+  :root[data-theme="dark"] .card .stat, @media (prefers-color-scheme: dark){ .card .stat{ color: var(--green); } }
+  .card ul{ margin: 0; padding-left: 18px; }
+  .card li{ margin-bottom: 4px; font-size: 14.5px; color: var(--ink-soft); }
+
+  /* ---------- plot cards (research) ---------- */
+  .plots{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 760px){ .plots{ grid-template-columns: 1fr; } }
+
+  .plot{
+    border: 1px solid var(--rule);
+    background: var(--bg-card);
+    padding: 22px 22px 20px;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .plot:hover{
+    transform: translateY(-3px);
+    border-color: var(--green);
+  }
+  .plot::before{
+    content: attr(data-plot);
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    background: var(--bg-alt);
+    border: 1px solid var(--rule);
+    border-top: none;
+    border-right: none;
+    padding: 3px 8px;
+  }
+  .plot-role{
+    font-weight: 700;
+    font-size: 15.5px;
+    margin: 0 0 2px;
+  }
+  .plot-org{
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    margin: 0 0 2px;
+  }
+  .plot-meta{
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+  }
+  .plot ul{ margin: 0; padding-left: 18px; }
+  .plot li{ font-size: 14px; color: var(--ink-soft); margin-bottom: 6px; }
+  .plot li:last-child{ margin-bottom: 0; }
+
+  /* ---------- work timeline ---------- */
+  .row-entry{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .row-entry:first-child{ border-top: none; }
+  @media (max-width: 620px){
+    .row-entry{ grid-template-columns: 1fr; gap: 6px; }
+  }
+  .row-when{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    padding-top: 3px;
+  }
+  .row-body h3{
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    font-weight: 700;
+    margin: 0 0 2px;
+  }
+  .row-body .role{
+    font-size: 14px;
+    color: var(--green-deep);
+    margin-bottom: 10px;
+  }
+  :root[data-theme="dark"] .row-body .role, @media (prefers-color-scheme: dark){ .row-body .role{ color: var(--green); } }
+  .row-body ul{ margin: 0; padding-left: 18px; }
+  .row-body li{ font-size: 14.5px; color: var(--ink-soft); margin-bottom: 5px; }
+
+  .cite{
+    margin-top: 34px;
+    padding: 18px 22px;
+    background: var(--bg-alt);
+    border-left: 3px solid var(--gold);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .cite b{ color: var(--ink); }
+
+  /* ---------- projects ---------- */
+  .proj-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 700px){ .proj-grid{ grid-template-columns: 1fr; } }
+  .proj{
+    border: 1px solid var(--rule);
+    padding: 22px;
+    background: var(--bg-card);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .proj:hover{
+    transform: translateY(-3px);
+    border-color: var(--green);
+  }
+  .proj .tag{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .proj h3{
+    font-family: var(--font-display);
+    font-size: 1.12rem;
+    margin: 0 0 10px;
+  }
+  .proj ul{ margin: 0; padding-left: 18px; }
+  .proj li{ font-size: 14px; color: var(--ink-soft); margin-bottom: 6px; }
+
+  .skills-block{ margin-bottom: 34px; }
+  .skills-block h3{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 14px;
+    font-weight: 600;
+  }
+  .chips{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chip{
+    font-size: 13.5px;
+    padding: 6px 12px;
+    border: 1px solid var(--rule-strong);
+    color: var(--ink-soft);
+    border-radius: 2px;
+    background: var(--bg-card);
+  }
+  .course-list{
+    columns: 2;
+    column-gap: 32px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    max-width: var(--wide-w);
+  }
+  .course-list li{ break-inside: avoid; margin-bottom: 6px; }
+  @media (max-width: 620px){ .course-list{ columns: 1; } }
+
+  /* ---------- contact ---------- */
+  .contact-section{
+    background: var(--bg-alt);
+  }
+  .contact-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .contact-main p{ max-width: 50ch; color: var(--ink-soft); }
+  .contact-cta{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--green);
+    padding-bottom: 4px;
+    margin-top: 6px;
+  }
+  .contact-cta:hover{ color: var(--green-deep); }
+  :root[data-theme="dark"] .contact-cta:hover, @media (prefers-color-scheme: dark){ .contact-cta:hover{ color: var(--green); } }
+  .contact-list{
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .contact-list a{ color: var(--ink-soft); }
+
+  footer{
+    padding: 30px 0 46px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+
+  @media print{
+    .fieldnav{ display: none; }
+    body{ background: #fff; color: #111; }
+    .hero::before{ display: none; }
+    section{ break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="fieldnav" aria-label="Section navigation">
+  <div class="fieldnav-bar">
+    <div class="fieldnav-scroll">
+      <div class="fieldnav-inner" id="fieldnav-inner">
+        <a href="#home" class="navlink" data-target="home"><span class="stage">START</span><span class="label">Home</span></a>
+        <a href="#about" class="navlink" data-target="about"><span class="stage">SEED</span><span class="label">About</span></a>
+        <a href="#education" class="navlink" data-target="education"><span class="stage">VE</span><span class="label">Roots</span></a>
+        <a href="#research" class="navlink" data-target="research"><span class="stage">V6</span><span class="label">Growth</span></a>
+        <a href="#work" class="navlink" data-target="work"><span class="stage">VT · R1</span><span class="label">Bloom</span></a>
+        <a href="#projects" class="navlink" data-target="projects"><span class="stage">R6</span><span class="label">Harvest</span></a>
+        <a href="#contact" class="navlink" data-target="contact"><span class="stage">→</span><span class="label">Contact</span></a>
+      </div>
+      <div class="fieldnav-fade" id="fieldnav-fade" aria-hidden="true"></div>
+    </div>
+    <div class="fieldnav-controls">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <p class="eyebrow">Plant Breeding · Data Science</p>
+    <h1>Tess Kern</h1>
+    <p class="hero-tag">I study crops in the field and in the data — phenotyping, breeding trials, and the machine-learning models that help make sense of them. Currently applying to Ph.D. programs in Plant Breeding.</p>
+    <div class="hero-meta">
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg> Madison, WI</span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg> B.S. Agronomy, Iowa State '23</span>
+    </div>
+  </div>
+  <svg class="hero-glyph" viewBox="0 0 100 200" fill="none" aria-hidden="true">
+    <path d="M50 190 C 48 140, 48 90, 50 20" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M50 150 C 30 140, 15 120, 10 95 C 35 100, 48 118, 50 150 Z" fill="var(--green)" opacity="0.75"/>
+    <path d="M50 120 C 70 108, 85 88, 90 62 C 65 68, 51 88, 50 120 Z" fill="var(--green)" opacity="0.55"/>
+    <path d="M50 90 C 32 80, 20 62, 16 40 C 38 44, 49 62, 50 90 Z" fill="var(--green)" opacity="0.75"/>
+    <path d="M50 60 C 66 50, 78 34, 82 15 C 60 18, 51 34, 50 60 Z" fill="var(--green)" opacity="0.55"/>
+    <circle cx="50" cy="18" r="4" fill="var(--gold)"/>
+  </svg>
+</header>
+
+<section id="about" class="reveal">
+  <div class="wrap-wide">
+    <p class="eyebrow">Seed — Before the First Leaf</p>
+    <h2>About</h2>
+    <div class="prose">
+      <p>I'm seeking a Ph.D. in Plant Breeding. I'm a passionate researcher interested in applying machine learning and data science to plant research, investigating diverse cropping systems, and building a more sustainable future for farmers and the world.</p>
+      <p>I'm looking for a program that fosters learning and growth as I develop as a data scientist. I thrive on completing long-term projects and adhering to protocols, and I'm eager to keep expanding my knowledge of machine learning algorithms, statistical models, and plant breeding methodologies.</p>
+    </div>
+  </div>
+</section>
+
+<main>
+
+  <section id="education" class="reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">VE — Emergence</p>
+    <h2>Education</h2>
+    <p class="section-sub">Where the roots went down.</p>
+    <div class="edu-grid">
+      <div class="card">
+        <h3>Iowa State University</h3>
+        <div class="place">Ames, IA</div>
+        <span class="stat">3.5 GPA · Graduated Dec 2023</span>
+        <ul>
+          <li>B.S. in Agronomy, minor in Data Science &amp; Analytics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>American Farm School, Perrotis College</h3>
+        <div class="place">Thessaloniki, Greece</div>
+        <span class="stat">4.0 GPA · Study Abroad, Spring 2022</span>
+        <ul>
+          <li>Olive Production Systems</li>
+          <li>Viticulture</li>
+          <li>Weed Science</li>
+          <li>Sustainable Ag Management</li>
+        </ul>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <section id="research" class="reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">V6 — Vegetative Growth</p>
+    <h2>Research Experience</h2>
+    <p class="section-sub">Seven field seasons, five labs, one running question: how do we breed better plants faster.</p>
+
+    <div class="plots">
+      <article class="plot" data-plot="2025 →">
+        <p class="plot-role">Research Intern</p>
+        <p class="plot-org">Ané Lab, University of Wisconsin–Madison</p>
+        <p class="plot-meta">Madison, WI · Oct 2025–Present</p>
+        <ul>
+          <li>Manage a team of 11 undergraduates through in-field phenotyping of corn aerial roots.</li>
+          <li>Writing a literature review on aerial root development and the key genes driving initiation and growth.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2023">
+        <p class="plot-role">REU Student</p>
+        <p class="plot-org">Arti Singh Lab, Iowa State University</p>
+        <p class="plot-meta">Ames, IA · Jan–May &amp; Sep–Dec 2023</p>
+        <ul>
+          <li>Collected and organized ground-truth data for a supervised learning project characterizing mungbean pod length and count; supervised prior image annotations for the model.</li>
+          <li>Cut sample time from 15 minutes to 8 by splitting and overlapping tasks — reshaping the project timeline.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2023">
+        <p class="plot-role">RAIN REU Visiting Scholar</p>
+        <p class="plot-org">Ciampitti Lab, Kansas State University</p>
+        <p class="plot-meta">Manhattan, KS · May–Aug 2023</p>
+        <ul>
+          <li>Wrangled data and built statistical programming skills for an end-of-summer poster presentation.</li>
+          <li>Compiled 20 years of Corn Belt yield data from yearly reports; analyzed corn vs. soybean yield trends in R.</li>
+          <li>1st, Herbicide ID &amp; 1st, Undergrad Team — Western Weed Science Society, National Weed Science Society meet, Union City, TN — practicing on-farm problem solving along the way.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2022">
+        <p class="plot-role">Cropping Systems Intern</p>
+        <p class="plot-org">Corteva Agriscience</p>
+        <p class="plot-meta">York, NE · May–Dec 2022</p>
+        <ul>
+          <li>Oversaw 5 fields (3–10 acres each) across two states — sampling, notes, and action plans built with growers and station leads — leading teams collecting soil and plant data through 680 plots.</li>
+          <li>Organized 1,470 rye breeding accessions across two locations; managed all breeder communication.</li>
+          <li>Collaborated on a soybean single-seed heritability study.</li>
+          <li>Coordinated a farmer field day showcasing the perennial ground cover project.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2021">
+        <p class="plot-role">Integrated Field Sciences Intern</p>
+        <p class="plot-org">Corteva Agriscience</p>
+        <p class="plot-meta">Johnston, IA · May–Dec 2021</p>
+        <ul>
+          <li>Investigated resistant alleles in insects for insect-resistant assays; prepped trays and dissected plants.</li>
+          <li>Harvested and processed hundreds of soybean plots; ran NIR trait analysis; operated an Almaco Harvest Pro/HP5 single-row plot harvester.</li>
+          <li>Characterized thousands of wheat samples for QTL and trait studies — prepping spikes for anther analysis and pollen counting toward hybrid wheat. Operated lab equipment including a microscope and an Elzone II particle counter.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2020–21">
+        <p class="plot-role">Undergraduate Research Assistant</p>
+        <p class="plot-org">Archontoulis Lab, Iowa State University</p>
+        <p class="plot-meta">Ames, IA · Aug 2020–May 2021</p>
+        <ul>
+          <li>Took nine-foot soil cores and subsampled for microbial analysis in support of FACTS.</li>
+          <li>Coordinated drying and C:N sample prep for corn and soybean tissue; weighed, shelled, and counted hundreds of corn samples across environments and management practices.</li>
+        </ul>
+      </article>
+
+      <article class="plot" data-plot="2020">
+        <p class="plot-role">Summer Research Assistant</p>
+        <p class="plot-org">Corteva Agriscience</p>
+        <p class="plot-meta">Johnston, IA · May–Aug 2020</p>
+        <ul>
+          <li>Washed thousands of corn roots to evaluate insect trait efficacy in the research pipeline.</li>
+          <li>Inoculated and identified corn and soybean diseases — gray leaf spot, northern leaf blight, anthracnose, white mold — in large field trials.</li>
+        </ul>
+      </article>
+    </div>
+   </div>
+  </section>
+
+  <section id="work" class="reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">VT · R1 — Tassel &amp; Silk</p>
+    <h2>Work Experience &amp; Presentations</h2>
+    <p class="section-sub">The reproductive stage — where the work becomes visible to other people.</p>
+
+    <div class="row-list">
+      <div class="row-entry">
+        <div class="row-when">Jan–Oct<br/>2025</div>
+        <div class="row-body">
+          <h3>Dallas Soil &amp; Water Conservation District</h3>
+          <div class="role">Conservation Outreach Coordinator · Adel, IA</div>
+          <ul>
+            <li>Compiled a comprehensive geospatial and agricultural dataset for the Walnut Creek Watershed from Farm Service Agency records and GIS surveys — land ownership, CRP acres, perennial stream lengths.</li>
+            <li>Ran a tree-sale fundraiser end to end — vendors, logistics, permitting, marketing — raising $462 for scholarships and watershed conservation.</li>
+            <li>Built county awareness of the urban conservation cost-share program through a library education series.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row-entry">
+        <div class="row-when">Aug–Dec<br/>2024</div>
+        <div class="row-body">
+          <h3>Anatolia Post-Baccalaureate Fellowship</h3>
+          <div class="role">Student Services Fellow · Thessaloniki, Greece</div>
+          <ul>
+            <li>Advised the Hip Hop and Junior Forensics clubs, building students' confidence in English communication and performance.</li>
+            <li>Consolidated and distributed daily announcements across three schools.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row-entry">
+        <div class="row-when">Jan–Aug<br/>2024</div>
+        <div class="row-body">
+          <h3>Polk Soil &amp; Water Conservation District</h3>
+          <div class="role">Conservation Coordinator, Central Iowa Land Stewardship Project · Ankeny, IA</div>
+          <ul>
+            <li>Designed and maintained polkswcdiowa.org; wrote blog content and ran district social media.</li>
+            <li>Co-organized two community field days on regenerative soil health and perennial grains and prairies.</li>
+            <li>Worked with homeowners and city officials to install urban conservation practices — rain gardens, native landscaping, rain barrels, soil restoration.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="cite">
+      <b>Kern, T.O., Massigoge, I., Lingua, L., Gimenez, V., Ciampitti, I.A.</b> — "Investigating Planting Date and Yield Gains Across the U.S. Corn Belt." Rainfed Agriculture Innovation Network, July 2023, Wichita, KS.
+    </div>
+   </div>
+  </section>
+
+  <section id="projects" class="reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">R6 — Physiological Maturity</p>
+    <h2>Projects, Skills &amp; Coursework</h2>
+    <p class="section-sub">Grain fill complete — the toolkit ready to put to work.</p>
+
+    <div class="proj-grid">
+      <div class="proj">
+        <span class="tag">Agronomy 525 · Special Project</span>
+        <h3>Simulating Yields in Naper, NE</h3>
+        <ul>
+          <li>Ran a sensitivity analysis showing fertilizer variability drives most end-of-season yield variability.</li>
+          <li>Learned the APSIMX package in R and applied it across randomized simulation scenarios.</li>
+        </ul>
+      </div>
+      <div class="proj">
+        <span class="tag">Data Science 301 · Senior Project</span>
+        <h3>How to Win in Baseball</h3>
+        <ul>
+          <li>Three-person team studying which game-day variables predict a winning outcome.</li>
+          <li>Rebuilt Billy Beane and Peter Brand's 'Moneyball' approach on the Oakland A's dataset — 86% accuracy predicting MLB playoff chances with a random forest model in Python.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <h3>Skills &amp; Tools</h3>
+      <div class="chips">
+        <span class="chip">R (Tidyverse, dplyr, apsimx)</span>
+        <span class="chip">Python (NumPy, Pandas, scikit-learn)</span>
+        <span class="chip">JMP</span>
+        <span class="chip">Excel</span>
+        <span class="chip">Data mining &amp; machine learning</span>
+        <span class="chip">Canva</span>
+        <span class="chip">HubSpot</span>
+        <span class="chip">WordPress</span>
+      </div>
+    </div>
+
+    <div class="skills-block">
+      <h3>Relevant Coursework</h3>
+      <ul class="course-list">
+        <li>Fundamentals of Computer Programming</li>
+        <li>Intermediate Statistical Models</li>
+        <li>Data Acquisition &amp; Exploratory Analysis</li>
+        <li>Applied Data Modeling &amp; Predictive Analysis</li>
+        <li>Crop and Soil Modeling</li>
+        <li>Systems Analysis in Crop and Soil Management</li>
+        <li>Genetics</li>
+        <li>Agriculture and Biotechnology</li>
+        <li>World Food Issues</li>
+        <li>Calculus 1</li>
+      </ul>
+    </div>
+   </div>
+  </section>
+
+  <section id="contact" class="contact-section reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">Next Planting</p>
+    <h2>Let's grow something</h2>
+    <div class="contact-grid">
+      <div class="contact-main">
+        <p>I'm applying to Ph.D. programs in Plant Breeding for the next cycle — always glad to talk about corn aerial roots, breeding pipelines, or a stats problem that needs untangling.</p>
+        <a class="contact-cta" href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a>
+      </div>
+      <ul class="contact-list">
+        <li>Based in Madison, WI</li>
+        <li>Open to Ph.D. programs in Plant Breeding &amp; Genetics</li>
+        <li>Outside the field: traveling to new cultures, kayaking and biking with family, watching movies, and learning and performing hip-hop dances</li>
+      </ul>
+    </div>
+   </div>
+  </section>
+
+</main>
+
+<footer>
+  Tess Kern · tesskern.com
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function isDark(){
+    var explicit = root.getAttribute('data-theme');
+    if (explicit === 'dark') return true;
+    if (explicit === 'light') return false;
+    return media.matches;
+  }
+  function syncToggle(){
+    var dark = isDark();
+    toggle.setAttribute('aria-pressed', String(dark));
+    toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+  toggle.addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('tk-theme', next); }catch(e){}
+    syncToggle();
+  });
+  media.addEventListener('change', syncToggle);
+  syncToggle();
+
+  var navScroll = document.getElementById('fieldnav-inner');
+  var navFade = document.getElementById('fieldnav-fade');
+  function syncFade(){
+    var hasMore = navScroll.scrollWidth - navScroll.scrollLeft - navScroll.clientWidth > 4;
+    navFade.classList.toggle('show', hasMore);
+  }
+  navScroll.addEventListener('scroll', syncFade, { passive: true });
+  window.addEventListener('resize', syncFade);
+  syncFade();
+
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.navlink'));
+  var sections = navLinks
+    .map(function(a){ return document.getElementById(a.getAttribute('data-target')); })
+    .filter(Boolean);
+
+  function setActive(id){
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('data-target') === id);
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    sections.forEach(function(s){ spy.observe(s); });
+
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals = document.querySelectorAll('.reveal');
+    if (reduceMotion) {
+      reveals.forEach(function(el){ el.classList.add('in'); });
+    } else {
+      var ro = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            ro.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach(function(el){ ro.observe(el); });
+    }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
