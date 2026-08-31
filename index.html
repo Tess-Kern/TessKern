@@ -4,8 +4,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tess Kern</title>
-<meta name="description" content="Tess Kern — plant breeding researcher applying data science and machine learning to crop systems. Research, projects, and CV." />
+<meta name="description" content="Tess Kern — Ph.D. student at the University of Illinois Urbana-Champaign working on crop modeling and genomic prediction. Research, projects, and CV." />
 <meta name="msvalidate.01" content="D7B9EC9B5210AB7F934CCCC1C1B95DFF" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.svg" sizes="any" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<meta name="theme-color" content="#3c5c3a" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Tess Kern" />
+<meta property="og:description" content="Ph.D. student at the University of Illinois Urbana-Champaign — crop modeling and genomic prediction in perennial sorghum and other crops." />
+<meta property="og:url" content="https://tesskern.com/" />
+<meta property="og:image" content="https://tesskern.com/favicon.svg" />
+<meta name="twitter:card" content="summary" />
 <script>
   try{
     var tkt = localStorage.getItem('tk-theme');
@@ -442,49 +452,6 @@
   .plot li{ font-size: 14px; color: var(--ink-soft); margin-bottom: 6px; }
   .plot li:last-child{ margin-bottom: 0; }
 
-  /* ---------- work timeline ---------- */
-  .row-entry{
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 24px;
-    padding: 26px 0;
-    border-top: 1px solid var(--rule);
-  }
-  .row-entry:first-child{ border-top: none; }
-  @media (max-width: 620px){
-    .row-entry{ grid-template-columns: 1fr; gap: 6px; }
-  }
-  .row-when{
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    color: var(--ink-faint);
-    padding-top: 3px;
-  }
-  .row-body h3{
-    font-family: var(--font-display);
-    font-size: 1.12rem;
-    font-weight: 700;
-    margin: 0 0 2px;
-  }
-  .row-body .role{
-    font-size: 14px;
-    color: var(--green-deep);
-    margin-bottom: 10px;
-  }
-  :root[data-theme="dark"] .row-body .role, @media (prefers-color-scheme: dark){ .row-body .role{ color: var(--green); } }
-  .row-body ul{ margin: 0; padding-left: 18px; }
-  .row-body li{ font-size: 14.5px; color: var(--ink-soft); margin-bottom: 5px; }
-
-  .cite{
-    margin-top: 34px;
-    padding: 18px 22px;
-    background: var(--bg-alt);
-    border-left: 3px solid var(--gold);
-    font-size: 14px;
-    color: var(--ink-soft);
-  }
-  .cite b{ color: var(--ink); }
-
   /* ---------- projects ---------- */
   .proj-grid{
     display: grid;
@@ -519,39 +486,6 @@
   }
   .proj ul{ margin: 0; padding-left: 18px; }
   .proj li{ font-size: 14px; color: var(--ink-soft); margin-bottom: 6px; }
-
-  .skills-block{ margin-bottom: 34px; }
-  .skills-block h3{
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-    margin: 0 0 14px;
-    font-weight: 600;
-  }
-  .chips{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .chip{
-    font-size: 13.5px;
-    padding: 6px 12px;
-    border: 1px solid var(--rule-strong);
-    color: var(--ink-soft);
-    border-radius: 2px;
-    background: var(--bg-card);
-  }
-  .course-list{
-    columns: 2;
-    column-gap: 32px;
-    font-size: 14px;
-    color: var(--ink-soft);
-    max-width: var(--wide-w);
-  }
-  .course-list li{ break-inside: avoid; margin-bottom: 6px; }
-  @media (max-width: 620px){ .course-list{ columns: 1; } }
 
   /* ---------- contact ---------- */
   .contact-section{
@@ -622,8 +556,7 @@
         <a href="#home" class="navlink" data-target="home"><span class="stage">START</span><span class="label">Home</span></a>
         <a href="#about" class="navlink" data-target="about"><span class="stage">SEED</span><span class="label">About</span></a>
         <a href="#education" class="navlink" data-target="education"><span class="stage">VE</span><span class="label">Roots</span></a>
-        <a href="#research" class="navlink" data-target="research"><span class="stage">V6</span><span class="label">Growth</span></a>
-        <a href="#work" class="navlink" data-target="work"><span class="stage">VT · R1</span><span class="label">Bloom</span></a>
+        <a href="#research" class="navlink" data-target="research"><span class="stage">V6 · R1</span><span class="label">Growth</span></a>
         <a href="#projects" class="navlink" data-target="projects"><span class="stage">R6</span><span class="label">Harvest</span></a>
         <a href="#contact" class="navlink" data-target="contact"><span class="stage">→</span><span class="label">Contact</span></a>
       </div>
@@ -640,12 +573,12 @@
 
 <header class="hero" id="home">
   <div class="hero-inner">
-    <p class="eyebrow">Plant Breeding · Data Science</p>
+    <p class="eyebrow">Crop Modeling · Plant Breeding · Data Science</p>
     <h1>Tess Kern</h1>
-    <p class="hero-tag">I study crops in the field and in the data — phenotyping, breeding trials, and the machine-learning models that help make sense of them. Currently applying to Ph.D. programs in Plant Breeding.</p>
+    <p class="hero-tag">I study crops in the field and in the data — phenotyping, breeding trials, and the models that help make sense of them. Now a Ph.D. student at the University of Illinois Urbana-Champaign, working on crop modeling and genomic prediction.</p>
     <div class="hero-meta">
-      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg> Madison, WI</span>
-      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg> Champaign-Urbana, IL</span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> <a href="mailto:tessk2@illinois.edu">tessk2@illinois.edu</a> · <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></span>
       <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg> B.S. Agronomy, Iowa State '23</span>
     </div>
   </div>
@@ -664,8 +597,9 @@
     <p class="eyebrow">Seed — Before the First Leaf</p>
     <h2>About</h2>
     <div class="prose">
-      <p>I'm seeking a Ph.D. in Plant Breeding. I'm a passionate researcher interested in applying machine learning and data science to plant research, investigating diverse cropping systems, and building a more sustainable future for farmers and the world.</p>
-      <p>I'm looking for a program that fosters learning and growth as I develop as a data scientist. I thrive on completing long-term projects and adhering to protocols, and I'm eager to keep expanding my knowledge of machine learning algorithms, statistical models, and plant breeding methodologies.</p>
+      <p>I am a Ph.D. graduate student at The University of Illinois Urbana-Champaign. I work in a quantitative genetics lab studying crop modeling and genomic prediction in perennial sorghum and other crops, and take classes.</p>
+      <p>I am interested in answering questions related to stochastic modeling, and unraveling complex genomes to better understand agronomic traits.</p>
+      <p>I aim to assist breeding programs with the use of large genomic datasets.</p>
     </div>
   </div>
 </section>
@@ -678,6 +612,15 @@
     <h2>Education</h2>
     <p class="section-sub">Where the roots went down.</p>
     <div class="edu-grid">
+      <div class="card">
+        <h3>University of Illinois Urbana-Champaign</h3>
+        <div class="place">Champaign-Urbana, IL</div>
+        <span class="stat">M.S. / Ph.D. · Aug 2026–present</span>
+        <ul>
+          <li>Crop Sciences — Quantitative Genetics</li>
+          <li>Crop modeling and genomic prediction in perennial sorghum and other crops</li>
+        </ul>
+      </div>
       <div class="card">
         <h3>Iowa State University</h3>
         <div class="place">Ames, IA</div>
@@ -703,18 +646,18 @@
 
   <section id="research" class="reveal">
    <div class="wrap-wide">
-    <p class="eyebrow">V6 — Vegetative Growth</p>
+    <p class="eyebrow">V6 · R1 — Growth &amp; Flowering</p>
     <h2>Research Experience</h2>
     <p class="section-sub">Seven field seasons, five labs, one running question: how do we breed better plants faster.</p>
 
     <div class="plots">
-      <article class="plot" data-plot="2025 →">
+      <article class="plot" data-plot="2025–26">
         <p class="plot-role">Research Intern</p>
         <p class="plot-org">Ané Lab, University of Wisconsin–Madison</p>
-        <p class="plot-meta">Madison, WI · Oct 2025–Present</p>
+        <p class="plot-meta">Madison, WI · Oct 2025–Aug 2026</p>
         <ul>
-          <li>Manage a team of 11 undergraduates through in-field phenotyping of corn aerial roots.</li>
-          <li>Writing a literature review on aerial root development and the key genes driving initiation and growth.</li>
+          <li>Managed a team of 15 undergraduates through in-field phenotyping of corn aerial roots.</li>
+          <li>Wrote a literature review on aerial root development and the key genes driving initiation and growth.</li>
         </ul>
       </article>
 
@@ -785,63 +728,11 @@
    </div>
   </section>
 
-  <section id="work" class="reveal">
-   <div class="wrap-wide">
-    <p class="eyebrow">VT · R1 — Tassel &amp; Silk</p>
-    <h2>Work Experience &amp; Presentations</h2>
-    <p class="section-sub">The reproductive stage — where the work becomes visible to other people.</p>
-
-    <div class="row-list">
-      <div class="row-entry">
-        <div class="row-when">Jan–Oct<br/>2025</div>
-        <div class="row-body">
-          <h3>Dallas Soil &amp; Water Conservation District</h3>
-          <div class="role">Conservation Outreach Coordinator · Adel, IA</div>
-          <ul>
-            <li>Compiled a comprehensive geospatial and agricultural dataset for the Walnut Creek Watershed from Farm Service Agency records and GIS surveys — land ownership, CRP acres, perennial stream lengths.</li>
-            <li>Ran a tree-sale fundraiser end to end — vendors, logistics, permitting, marketing — raising $462 for scholarships and watershed conservation.</li>
-            <li>Built county awareness of the urban conservation cost-share program through a library education series.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row-entry">
-        <div class="row-when">Aug–Dec<br/>2024</div>
-        <div class="row-body">
-          <h3>Anatolia Post-Baccalaureate Fellowship</h3>
-          <div class="role">Student Services Fellow · Thessaloniki, Greece</div>
-          <ul>
-            <li>Advised the Hip Hop and Junior Forensics clubs, building students' confidence in English communication and performance.</li>
-            <li>Consolidated and distributed daily announcements across three schools.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row-entry">
-        <div class="row-when">Jan–Aug<br/>2024</div>
-        <div class="row-body">
-          <h3>Polk Soil &amp; Water Conservation District</h3>
-          <div class="role">Conservation Coordinator, Central Iowa Land Stewardship Project · Ankeny, IA</div>
-          <ul>
-            <li>Designed and maintained polkswcdiowa.org; wrote blog content and ran district social media.</li>
-            <li>Co-organized two community field days on regenerative soil health and perennial grains and prairies.</li>
-            <li>Worked with homeowners and city officials to install urban conservation practices — rain gardens, native landscaping, rain barrels, soil restoration.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="cite">
-      <b>Kern, T.O., Massigoge, I., Lingua, L., Gimenez, V., Ciampitti, I.A.</b> — "Investigating Planting Date and Yield Gains Across the U.S. Corn Belt." Rainfed Agriculture Innovation Network, July 2023, Wichita, KS.
-    </div>
-   </div>
-  </section>
-
   <section id="projects" class="reveal">
    <div class="wrap-wide">
     <p class="eyebrow">R6 — Physiological Maturity</p>
-    <h2>Projects, Skills &amp; Coursework</h2>
-    <p class="section-sub">Grain fill complete — the toolkit ready to put to work.</p>
+    <h2>Projects</h2>
+    <p class="section-sub">Grain fill complete — where the coursework turned into results.</p>
 
     <div class="proj-grid">
       <div class="proj">
@@ -861,36 +752,6 @@
         </ul>
       </div>
     </div>
-
-    <div class="skills-block">
-      <h3>Skills &amp; Tools</h3>
-      <div class="chips">
-        <span class="chip">R (Tidyverse, dplyr, apsimx)</span>
-        <span class="chip">Python (NumPy, Pandas, scikit-learn)</span>
-        <span class="chip">JMP</span>
-        <span class="chip">Excel</span>
-        <span class="chip">Data mining &amp; machine learning</span>
-        <span class="chip">Canva</span>
-        <span class="chip">HubSpot</span>
-        <span class="chip">WordPress</span>
-      </div>
-    </div>
-
-    <div class="skills-block">
-      <h3>Relevant Coursework</h3>
-      <ul class="course-list">
-        <li>Fundamentals of Computer Programming</li>
-        <li>Intermediate Statistical Models</li>
-        <li>Data Acquisition &amp; Exploratory Analysis</li>
-        <li>Applied Data Modeling &amp; Predictive Analysis</li>
-        <li>Crop and Soil Modeling</li>
-        <li>Systems Analysis in Crop and Soil Management</li>
-        <li>Genetics</li>
-        <li>Agriculture and Biotechnology</li>
-        <li>World Food Issues</li>
-        <li>Calculus 1</li>
-      </ul>
-    </div>
    </div>
   </section>
 
@@ -900,12 +761,13 @@
     <h2>Let's grow something</h2>
     <div class="contact-grid">
       <div class="contact-main">
-        <p>I'm applying to Ph.D. programs in Plant Breeding for the next cycle — always glad to talk about corn aerial roots, breeding pipelines, or a stats problem that needs untangling.</p>
-        <a class="contact-cta" href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a>
+        <p>I'm a Ph.D. student at the University of Illinois Urbana-Champaign, working on crop modeling and genomic prediction — always glad to talk about perennial sorghum, stochastic modeling, or a genome that needs unraveling.</p>
+        <a class="contact-cta" href="mailto:tessk2@illinois.edu">tessk2@illinois.edu</a>
       </div>
       <ul class="contact-list">
-        <li>Based in Madison, WI</li>
-        <li>Open to Ph.D. programs in Plant Breeding &amp; Genetics</li>
+        <li>Also at <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></li>
+        <li>Based in Champaign-Urbana, IL</li>
+        <li>Quantitative genetics lab — crop modeling &amp; genomic prediction</li>
         <li>Outside the field: traveling to new cultures, kayaking and biking with family, watching movies, and learning and performing hip-hop dances</li>
       </ul>
     </div>
