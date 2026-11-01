@@ -1,0 +1,178 @@
+<script>
+// Fumadocs-style "On this page" TOC (port of fumadocs-ui toc/default, as used
+// on pbidocs). Rebuilds Quarto's #TOC into a flat list with a curved rail,
+// a highlighted thumb over the sections in view, and a dot that rides the rail.
+(function () {
+  var toc = document.getElementById('TOC');
+  if (!toc) return;
+
+  var SVG = 'http://www.w3.org/2000/svg';
+  function lineOffset(d) { return d <= 2 ? 8 : d === 3 ? 16 : 24; }
+  function itemOffset(d) { return d <= 2 ? 20 : d === 3 ? 32 : 44; }
+  function svgEl(tag, attrs) {
+    var el = document.createElementNS(SVG, tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+
+  // Collect links in document order with their depth (top-level list = 2).
+  var items = [];
+  (function walk(ul, depth) {
+    if (!ul) return;
+    Array.prototype.forEach.call(ul.children, function (li) {
+      var a = li.querySelector(':scope > a');
+      if (a) {
+        var target = document.getElementById(decodeURIComponent(a.getAttribute('href').slice(1)));
+        if (target) items.push({ href: a.getAttribute('href'), title: a.textContent, depth: depth, target: target });
+      }
+      walk(li.querySelector(':scope > ul'), depth + 1);
+    });
+  })(toc.querySelector(':scope > ul'), 2);
+  if (items.length === 0) return;
+
+  // Build the new markup.
+  toc.innerHTML = '';
+  toc.classList.add('fd-toc');
+  var title = document.createElement('h2');
+  title.id = 'toc-title';
+  title.className = 'fd-toc-title';
+  title.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 5H3"/><path d="M15 12H3"/><path d="M17 19H3"/></svg>On this page';
+  var scroll = document.createElement('div');
+  scroll.className = 'fd-toc-scroll';
+  var list = document.createElement('div');
+  list.className = 'fd-toc-items';
+  scroll.appendChild(list);
+  toc.appendChild(title);
+  toc.appendChild(scroll);
+
+  items.forEach(function (item, i) {
+    var a = document.createElement('a');
+    a.href = item.href;
+    a.className = 'fd-toc-item';
+    a.style.paddingInlineStart = itemOffset(item.depth) + 'px';
+    if (i === 0) a.classList.add('first');
+    if (i === items.length - 1) a.classList.add('last');
+
+    // Faint background rail for this item.
+    var l1 = lineOffset(item.depth);
+    var l0 = i === 0 ? l1 : lineOffset(items[i - 1].depth);
+    var l2 = i === items.length - 1 ? l1 : lineOffset(items[i + 1].depth);
+    var rail = svgEl('svg', { 'aria-hidden': 'true', 'class': 'fd-toc-rail' + (l1 !== l2 ? ' short' : '') });
+    rail.style.width = (Math.max(l0, l1) + 9) + 'px';
+    if (l0 !== l1) {
+      rail.appendChild(svgEl('path', { d: 'M ' + (l0 + .5) + ' 0 C ' + (l0 + .5) + ' 8 ' + (l1 + .5) + ' 4 ' + (l1 + .5) + ' 12', fill: 'none', 'stroke-width': '1' }));
+    }
+    rail.appendChild(svgEl('line', { x1: l1 + .5, y1: l0 === l1 ? 6 : 12, x2: l1 + .5, y2: '100%', 'stroke-width': '1' }));
+
+    a.appendChild(rail);
+    a.appendChild(document.createTextNode(item.title));
+    list.appendChild(a);
+    item.el = a;
+  });
+
+  // Thumb track: the full rail path, clipped to the active range, plus a dot.
+  var track = document.createElement('div');
+  track.className = 'fd-toc-track';
+  track.setAttribute('aria-hidden', 'true');
+  var trackSvg = svgEl('svg', {});
+  var trackPath = svgEl('path', { fill: 'none', 'stroke-width': '1' });
+  trackSvg.appendChild(trackPath);
+  var dot = document.createElement('div');
+  dot.className = 'fd-toc-dot';
+  track.appendChild(trackSvg);
+  track.appendChild(dot);
+  list.insertBefore(track, list.firstChild);
+
+  var positions = [], lengths = [], prev = null;
+
+  function layout() {
+    if (list.clientHeight === 0) return;
+    var w = 0, h = 0, d = '';
+    positions = [];
+    items.forEach(function (item, i) {
+      var cs = getComputedStyle(item.el);
+      var x = lineOffset(item.depth) + .5;
+      var top = item.el.offsetTop + parseFloat(cs.paddingTop);
+      var bottom = item.el.offsetTop + item.el.clientHeight - parseFloat(cs.paddingBottom);
+      w = Math.max(x + 8, w);
+      h = Math.max(h, bottom);
+      if (i === 0) d += ' M' + x + ' ' + top + ' L' + x + ' ' + bottom;
+      else {
+        var p = positions[i - 1];
+        d += ' C ' + p[2] + ' ' + (top - 4) + ' ' + x + ' ' + (p[1] + 4) + ' ' + x + ' ' + top + ' L' + x + ' ' + bottom;
+      }
+      positions.push([top, bottom, x]);
+    });
+
+    track.style.width = w + 'px';
+    track.style.height = h + 'px';
+    trackSvg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    trackSvg.style.width = w + 'px';
+    trackSvg.style.height = h + 'px';
+    trackPath.setAttribute('d', d);
+    dot.style.offsetPath = 'path("' + d + '")';
+
+    // Where along the path each item starts/ends, for the dot.
+    lengths = [];
+    var n = trackPath.getTotalLength();
+    positions.forEach(function (pos, i) {
+      var l = i > 0 ? lengths[i - 1][1] + (pos[0] - positions[i - 1][1]) : pos[0];
+      while (l < n && trackPath.getPointAtLength(l).y < pos[0]) l++;
+      lengths.push([l, l + pos[1] - pos[0]]);
+    });
+    update();
+  }
+
+  // A section runs from its anchor to the next anchor; it's active while any
+  // part of it is on screen below the navbar.
+  function update() {
+    if (positions.length === 0) return;
+    var header = document.getElementById('quarto-header');
+    var viewTop = header ? header.getBoundingClientRect().bottom : 0;
+    var viewBottom = window.innerHeight;
+    var contentEnd = (document.getElementById('quarto-document-content') || document.body).getBoundingClientRect().bottom;
+
+    var start = -1, end = -1;
+    items.forEach(function (item, i) {
+      var top = item.target.getBoundingClientRect().top;
+      var bottom = i < items.length - 1 ? items[i + 1].target.getBoundingClientRect().top : contentEnd;
+      var active = bottom > viewTop + 1 && top < viewBottom;
+      item.el.classList.toggle('active', active);
+      if (active) { if (start === -1) start = i; end = i; }
+    });
+
+    if (start === -1) {
+      track.style.setProperty('--opacity', '0');
+      track.style.setProperty('--track-top', '0px');
+      track.style.setProperty('--track-bottom', '0px');
+      prev = null;
+      return;
+    }
+    var isUp = false;
+    if (prev) isUp = prev.start > start || prev.end > end || (prev.start === start && prev.end === end && prev.isUp);
+    prev = { start: start, end: end, isUp: isUp };
+
+    track.style.setProperty('--track-top', positions[start][0] + 'px');
+    track.style.setProperty('--track-bottom', positions[end][1] + 'px');
+    track.style.setProperty('--offset-distance', (isUp ? lengths[start][0] : lengths[end][1]) + 'px');
+    track.style.setProperty('--opacity', '1');
+
+    // Keep the active item visible if the TOC itself scrolls.
+    var activeEl = items[isUp ? start : end].el;
+    var st = scroll.scrollTop, sh = scroll.clientHeight;
+    if (activeEl.offsetTop < st + 16 || activeEl.offsetTop + activeEl.offsetHeight > st + sh - 16) {
+      scroll.scrollTo({ top: activeEl.offsetTop - sh / 2, behavior: 'smooth' });
+    }
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; update(); });
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  if ('ResizeObserver' in window) new ResizeObserver(layout).observe(list);
+  layout();
+})();
+</script>

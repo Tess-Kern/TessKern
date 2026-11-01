@@ -1,0 +1,17 @@
+{
+  "hash": "09f0f8e56c6e7a3bf765a875b30c9f97",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"First post: R in the blog\"\ndescription: \"A quick test that R code, output, and plots render.\"\ndate: 2026-11-01\ncategories: [R, meta]\n---\n\nThis is a test post to confirm that R chunks run and plots render.\n\n## The data\n\nThe built-in `mtcars` dataset has fuel economy and design figures for 32 cars.\n\n### Summary statistics\n\n\n::: {.cell}\n\n```{.r .cell-code}\ndata(mtcars)\nsummary(mtcars[, c(\"mpg\", \"wt\", \"hp\")])\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n      mpg              wt              hp       \n Min.   :10.40   Min.   :1.513   Min.   : 52.0  \n 1st Qu.:15.43   1st Qu.:2.581   1st Qu.: 96.5  \n Median :19.20   Median :3.325   Median :123.0  \n Mean   :20.09   Mean   :3.217   Mean   :146.7  \n 3rd Qu.:22.80   3rd Qu.:3.610   3rd Qu.:180.0  \n Max.   :33.90   Max.   :5.424   Max.   :335.0  \n```\n\n\n:::\n:::\n\n\n### Correlations\n\n\n::: {.cell}\n\n```{.r .cell-code}\nround(cor(mtcars[, c(\"mpg\", \"wt\", \"hp\")]), 2)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n      mpg    wt    hp\nmpg  1.00 -0.87 -0.78\nwt  -0.87  1.00  0.66\nhp  -0.78  0.66  1.00\n```\n\n\n:::\n:::\n\n\n## A plot\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(ggplot2)\n\nggplot(mtcars, aes(wt, mpg)) +\n  geom_point(colour = \"#3c5c3a\", size = 2.5) +\n  geom_smooth(method = \"lm\", colour = \"#a86f1a\", se = FALSE) +\n  labs(x = \"Weight (1000 lbs)\", y = \"Miles per gallon\") +\n  theme_minimal(base_size = 13)\n```\n\n::: {.cell-output-display}\n![Fuel economy falls as vehicle weight rises.](index_files/figure-html/fig-mpg-wt-1.png){#fig-mpg-wt width=672}\n:::\n:::\n\n\n## A simple model\n\n\n::: {.cell}\n\n```{.r .cell-code}\nfit <- lm(mpg ~ wt + hp, data = mtcars)\nsummary(fit)$coefficients\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n               Estimate Std. Error   t value     Pr(>|t|)\n(Intercept) 37.22727012 1.59878754 23.284689 2.565459e-20\nwt          -3.87783074 0.63273349 -6.128695 1.119647e-06\nhp          -0.03177295 0.00902971 -3.518712 1.451229e-03\n```\n\n\n:::\n:::\n\n\n## Wrapping up\n\nIf you can see the code, its output, and the plot above, Quarto and R are wired up correctly.\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

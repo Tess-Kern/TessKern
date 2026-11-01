@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: ../blog
+
+website:
+  title: "Tess Kern · Blog"
+  site-url: https://tesskern.com/blog
+  description: "Notes on crop modeling, genomic prediction, and R."
+  favicon: favicon.svg
+  navbar:
+    left:
+      - text: Home
+        href: https://tesskern.com
+      - text: Blog
+        href: index.qmd
+    right:
+      - icon: github
+        href: https://github.com/Tess-Kern/TessKern
+        aria-label: GitHub repository
+
+format:
+  html:
+    theme:
+      light: [cosmo, custom.scss]
+      dark: [cosmo, custom.scss, custom-dark.scss]
+    respect-user-color-scheme: true
+    code-copy: true
+    code-fold: show
+    toc: true
+    toc-depth: 3
+    include-after-body: fd-toc.html
+
+execute:
+  freeze: auto
