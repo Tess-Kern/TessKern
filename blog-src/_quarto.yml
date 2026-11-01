@@ -28,7 +28,8 @@ format:
     code-fold: show
     toc: true
     toc-depth: 3
-    include-after-body: fd-toc.html
+    include-in-header: theme-head.html
+    include-after-body: [fd-toc.html, theme-toggle.html]
 
 execute:
   freeze: auto

@@ -1,0 +1,29 @@
+<script>
+// Swap Quarto's switch icon for the homepage's sun/moon button, and write the
+// choice back to tk-theme so the homepage follows it.
+(function () {
+  var sun = '<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>';
+  var moon = '<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>';
+
+  function isDark(el) { return el.classList.contains('alternate'); }
+  function sync(el) {
+    var dark = isDark(el);
+    el.setAttribute('aria-pressed', String(dark));
+    el.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    el.title = dark ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+
+  document.querySelectorAll('.quarto-color-scheme-toggle').forEach(function (el) {
+    el.classList.add('tk-theme-toggle');
+    el.setAttribute('role', 'button');
+    el.innerHTML = sun + moon;
+    sync(el);
+    el.addEventListener('click', function () {
+      // Quarto's own onclick has already flipped the class by now.
+      try { localStorage.setItem('tk-theme', isDark(el) ? 'dark' : 'light'); } catch (e) {}
+      sync(el);
+    });
+    new MutationObserver(function () { sync(el); }).observe(el, { attributes: true, attributeFilter: ['class'] });
+  });
+})();
+</script>
