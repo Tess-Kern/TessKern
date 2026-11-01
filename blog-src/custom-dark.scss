@@ -1,0 +1,17 @@
+/*-- scss:defaults --*/
+
+// Dark palette, matching :root[data-theme="dark"] in ../index.html.
+// Layered after custom.scss, so these win over its !default values.
+$tk-bg: #17130b;
+$tk-bg-alt: #1e1810;
+$tk-bg-card: #211b11;
+$tk-ink: #ece3cd;
+$tk-ink-soft: #bcaf8b;
+$tk-ink-faint: #8c8064;
+$tk-green: #7fae63;
+$tk-green-deep: #a7cf8d;
+$tk-gold: #e0a83f;
+$tk-rule: #3a331f;
+$tk-rule-strong: #4a4227;
+// the homepage uses --green for links in dark mode
+$tk-link: #7fae63;

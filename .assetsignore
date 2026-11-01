@@ -9,3 +9,6 @@ node_modules
 node_modules/**
 wrangler.toml
 .assetsignore
+blog-src
+blog-src/**
+BLOG.md

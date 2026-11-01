@@ -1,0 +1,54 @@
+---
+title: "First post: R in the blog"
+description: "A quick test that R code, output, and plots render."
+date: 2026-11-01
+categories: [R, meta]
+---
+
+This is a test post to confirm that R chunks run and plots render.
+
+## The data
+
+The built-in `mtcars` dataset has fuel economy and design figures for 32 cars.
+
+### Summary statistics
+
+```{r}
+#| label: summary
+data(mtcars)
+summary(mtcars[, c("mpg", "wt", "hp")])
+```
+
+### Correlations
+
+```{r}
+#| label: cor
+round(cor(mtcars[, c("mpg", "wt", "hp")]), 2)
+```
+
+## A plot
+
+```{r}
+#| label: fig-mpg-wt
+#| fig-cap: "Fuel economy falls as vehicle weight rises."
+#| warning: false
+library(ggplot2)
+
+ggplot(mtcars, aes(wt, mpg)) +
+  geom_point(colour = "#3c5c3a", size = 2.5) +
+  geom_smooth(method = "lm", colour = "#a86f1a", se = FALSE) +
+  labs(x = "Weight (1000 lbs)", y = "Miles per gallon") +
+  theme_minimal(base_size = 13)
+```
+
+## A simple model
+
+```{r}
+#| label: model
+fit <- lm(mpg ~ wt + hp, data = mtcars)
+summary(fit)$coefficients
+```
+
+## Wrapping up
+
+If you can see the code, its output, and the plot above, Quarto and R are wired up correctly.

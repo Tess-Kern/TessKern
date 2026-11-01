@@ -1,0 +1,192 @@
+/*-- scss:defaults --*/
+
+// Palette mirrors the :root variables in ../index.html (light theme).
+// Values use !default so custom-dark.scss can override them.
+$tk-bg: #efe8d8 !default;
+$tk-bg-alt: #e4dcc5 !default;
+$tk-bg-card: #f5f0e3 !default;
+$tk-ink: #241f16 !default;
+$tk-ink-soft: #5b543f !default;
+$tk-ink-faint: #85795a !default;
+$tk-green: #3c5c3a !default;
+$tk-green-deep: #2a4228 !default;
+$tk-gold: #a86f1a !default;
+$tk-rule: #cabf9f !default;
+$tk-rule-strong: #b3a67e !default;
+$tk-link: $tk-green-deep !default;
+
+// Fonts (same stacks as the homepage)
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", monospace;
+$headings-font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+$headings-font-weight: 400;
+
+// Bootstrap / Quarto mappings
+$body-bg: $tk-bg;
+$body-color: $tk-ink;
+$body-secondary-color: $tk-ink-soft;
+$text-muted: $tk-ink-faint;
+$primary: $tk-green;
+$secondary: $tk-ink-soft;
+$warning: $tk-gold;
+$link-color: $tk-link;
+$border-color: $tk-rule;
+$hr-border-color: $tk-rule;
+
+$navbar-bg: $tk-bg;
+$navbar-fg: $tk-ink-soft;
+$navbar-hl: $tk-ink;
+$footer-bg: $tk-bg;
+$footer-fg: $tk-ink-faint;
+
+$code-color: $tk-gold;
+$code-block-bg: $tk-bg-card;
+$code-block-border-left: $tk-green;
+
+$callout-color-note: $tk-green;
+$callout-color-tip: $tk-green;
+$callout-color-warning: $tk-gold;
+
+/*-- scss:rules --*/
+
+.navbar {
+  border-bottom: 1px solid $tk-rule;
+}
+
+.navbar-title {
+  font-family: $headings-font-family;
+}
+
+h1, h2, h3, .title, .listing-title {
+  font-family: $headings-font-family;
+  font-weight: 400;
+}
+
+.quarto-title-meta-heading,
+.listing-categories .listing-category,
+.quarto-category {
+  font-family: $font-family-monospace;
+  letter-spacing: 0.06em;
+  color: $tk-gold;
+  border-color: $tk-rule-strong;
+}
+
+div.sourceCode,
+pre.sourceCode {
+  border: 1px solid $tk-rule;
+}
+
+.quarto-listing-default .quarto-post {
+  border-bottom: 1px solid $tk-rule;
+}
+
+a:hover {
+  color: $tk-green;
+}
+
+// ---------- "On this page" TOC (Fumadocs default style; see fd-toc.html) ----------
+
+#quarto-document-content section[id] {
+  scroll-margin-top: 5rem;
+}
+
+nav#TOC.fd-toc {
+  border: 0;
+  padding: 0;
+}
+
+.fd-toc-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  font-family: $font-family-sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: $tk-ink-faint;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.fd-toc-scroll {
+  position: relative;
+  min-height: 0;
+  max-height: calc(100vh - 10rem);
+  padding: 0.75rem 0;
+  overflow-x: clip;
+  overflow-y: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(to bottom, transparent, #fff 16px, #fff calc(100% - 16px), transparent);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.fd-toc-items {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+}
+
+a.fd-toc-item {
+  position: relative;
+  display: block;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: $tk-ink-faint;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color 0.15s ease;
+
+  &.first { padding-top: 0; }
+  &.last { padding-bottom: 0; }
+  &:hover { color: $tk-ink; }
+  &.active { color: $tk-green; }
+}
+
+.fd-toc-rail {
+  position: absolute;
+  top: -0.375rem;
+  left: 0;
+  height: calc(100% + 0.375rem);
+  z-index: -1;
+  overflow: visible;
+  stroke: rgba($tk-ink, 0.1);
+
+  &.short { height: 100%; }
+}
+
+.fd-toc-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+  svg {
+    position: absolute;
+    overflow: visible;
+    stroke: $tk-green;
+    clip-path: polygon(0 var(--track-top, 0), 100% var(--track-top, 0), 100% var(--track-bottom, 0), 0 var(--track-bottom, 0));
+    transition: clip-path 0.15s ease;
+  }
+}
+
+.fd-toc-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background: $tk-green;
+  offset-distance: var(--offset-distance, 0);
+  opacity: var(--opacity, 0);
+  transition: opacity 0.15s ease, offset-distance 0.15s ease;
+}
