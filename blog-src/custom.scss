@@ -84,6 +84,108 @@ a:hover {
   color: $tk-green;
 }
 
+// ---------- navbar icon buttons (match the homepage's round controls) ----------
+
+.navbar .tk-theme-toggle,
+.navbar .nav-link[href^="https://github.com"] {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  padding: 0 !important;
+  border: 1px solid $tk-rule-strong;
+  border-radius: 50%;
+  background: $tk-bg-card;
+  color: $tk-ink-soft;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: $tk-green;
+    color: $tk-ink;
+  }
+}
+
+.navbar .quarto-navbar-tools {
+  display: flex;
+  align-items: center;
+}
+
+.navbar #quarto-search {
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+
+  .aa-DetachedSearchButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid $tk-rule-strong;
+    border-radius: 50%;
+    background: $tk-bg-card;
+    color: $tk-ink-soft;
+    transition: border-color 0.2s ease, color 0.2s ease;
+
+    &:hover {
+      border-color: $tk-green;
+      color: $tk-ink;
+    }
+  }
+
+  .aa-DetachedSearchButtonIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    margin: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .aa-Autocomplete {
+    display: flex;
+  }
+}
+
+// Quarto sizes this icon with a long selector, so match it to override.
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+.navbar .nav-link[href^="https://github.com"] .bi {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.navbar .tk-theme-toggle {
+  &:active { transform: scale(0.92); }
+
+  svg {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 16px;
+    height: 16px;
+    transition: opacity 0.35s ease, transform 0.45s ease;
+  }
+
+  .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+  .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+
+  &.alternate {
+    .icon-sun { opacity: 0; transform: rotate(90deg) scale(0.6); }
+    .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+  }
+}
+
 // ---------- "On this page" TOC (Fumadocs default style; see fd-toc.html) ----------
 
 #quarto-document-content section[id] {

@@ -1,0 +1,10 @@
+<script>
+// Share the light/dark choice with the homepage. The homepage stores it as
+// tk-theme ("light"/"dark"); Quarto stores quarto-color-scheme
+// ("default"/"alternate"). Copy the homepage choice over before Quarto reads it.
+try {
+  var tkt = localStorage.getItem('tk-theme');
+  if (tkt === 'dark') localStorage.setItem('quarto-color-scheme', 'alternate');
+  else if (tkt === 'light') localStorage.setItem('quarto-color-scheme', 'default');
+} catch (e) {}
+</script>
