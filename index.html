@@ -4,38 +4,40 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tess Kern</title>
-<meta name="description" content="Tess Kern — Ph.D. student at the University of Illinois Urbana-Champaign working on crop modeling and genomic prediction. Research, projects, and CV." />
+<meta name="description" content="Tess Kern — Ph.D. student at the University of Illinois Urbana-Champaign working on breeding simulations and crop modeling. Research, publications, and CV." />
 <meta name="msvalidate.01" content="D7B9EC9B5210AB7F934CCCC1C1B95DFF" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.svg" sizes="any" />
 <link rel="apple-touch-icon" href="/favicon.svg" />
-<meta name="theme-color" content="#3c5c3a" />
+<meta name="theme-color" content="#3f012c" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Tess Kern" />
-<meta property="og:description" content="Ph.D. student at the University of Illinois Urbana-Champaign — crop modeling and genomic prediction in perennial sorghum and other crops." />
+<meta property="og:description" content="Ph.D. student at the University of Illinois Urbana-Champaign — breeding simulations and crop modeling in perennial sorghum and other crops." />
 <meta property="og:url" content="https://tesskern.com/" />
 <meta property="og:image" content="https://tesskern.com/favicon.svg" />
 <meta name="twitter:card" content="summary" />
 <script>
   try{
     var tkt = localStorage.getItem('tk-theme');
-    if (tkt === 'light' || tkt === 'dark') document.documentElement.setAttribute('data-theme', tkt);
+    if (tkt === 'light') document.documentElement.setAttribute('data-theme', tkt);
   }catch(e){}
 </script>
 <style>
+  /* Default theme: dark plum. Light theme is opt-in via the toggle. */
   :root{
-    --bg: #efe8d8;
-    --bg-alt: #e4dcc5;
-    --bg-card: #f5f0e3;
-    --ink: #241f16;
-    --ink-soft: #5b543f;
-    --ink-faint: #85795a;
-    --green: #3c5c3a;
-    --green-deep: #2a4228;
-    --gold: #a86f1a;
-    --rule: #cabf9f;
-    --rule-strong: #b3a67e;
-    --focus: #2a4228;
+    color-scheme: dark;
+    --bg: #3f012c;
+    --bg-alt: #350125;
+    --bg-card: #4c0a37;
+    --ink: #f7eaf1;
+    --ink-soft: #dcc0d0;
+    --ink-faint: #bb96ab;
+    --green: #8fd694;
+    --green-deep: #b6ecb4;
+    --gold: #f2b84b;
+    --rule: #5f1a4b;
+    --rule-strong: #7d3065;
+    --focus: #b6ecb4;
 
     --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Times New Roman', serif;
     --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -45,35 +47,20 @@
     --wide-w: 920px;
   }
 
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg: #17130b;
-      --bg-alt: #1e1810;
-      --bg-card: #211b11;
-      --ink: #ece3cd;
-      --ink-soft: #bcaf8b;
-      --ink-faint: #8c8064;
-      --green: #7fae63;
-      --green-deep: #a7cf8d;
-      --gold: #e0a83f;
-      --rule: #3a331f;
-      --rule-strong: #4a4227;
-      --focus: #a7cf8d;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg: #17130b;
-    --bg-alt: #1e1810;
-    --bg-card: #211b11;
-    --ink: #ece3cd;
-    --ink-soft: #bcaf8b;
-    --ink-faint: #8c8064;
-    --green: #7fae63;
-    --green-deep: #a7cf8d;
-    --gold: #e0a83f;
-    --rule: #3a331f;
-    --rule-strong: #4a4227;
-    --focus: #a7cf8d;
+  :root[data-theme="light"]{
+    color-scheme: light;
+    --bg: #f8eff4;
+    --bg-alt: #f0e2eb;
+    --bg-card: #fcf7fa;
+    --ink: #2b0a20;
+    --ink-soft: #5c3a50;
+    --ink-faint: #7f5f73;
+    --green: #2f6b3a;
+    --green-deep: #24512d;
+    --gold: #9a5f12;
+    --rule: #e2cdd9;
+    --rule-strong: #c9a8bc;
+    --focus: #3f012c;
   }
 
   *{ box-sizing: border-box; }
@@ -93,8 +80,7 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  a{ color: var(--green-deep); }
-  :root[data-theme="dark"] a, @media (prefers-color-scheme: dark){ a{ color: var(--green); } }
+  a{ color: var(--green); }
 
   a:focus-visible, button:focus-visible{
     outline: 2px solid var(--focus);
@@ -244,14 +230,10 @@
     color: var(--ink-soft);
     transition: opacity 0.35s ease, transform 0.45s ease;
   }
-  .theme-toggle .icon-sun{ opacity: 1; transform: rotate(0deg) scale(1); }
-  .theme-toggle .icon-moon{ opacity: 0; transform: rotate(-90deg) scale(0.6); }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]) .theme-toggle .icon-sun{ opacity: 0; transform: rotate(90deg) scale(0.6); }
-    :root:not([data-theme="light"]) .theme-toggle .icon-moon{ opacity: 1; transform: rotate(0deg) scale(1); }
-  }
-  :root[data-theme="dark"] .theme-toggle .icon-sun{ opacity: 0; transform: rotate(90deg) scale(0.6); }
-  :root[data-theme="dark"] .theme-toggle .icon-moon{ opacity: 1; transform: rotate(0deg) scale(1); }
+  .theme-toggle .icon-sun{ opacity: 0; transform: rotate(90deg) scale(0.6); }
+  .theme-toggle .icon-moon{ opacity: 1; transform: rotate(0deg) scale(1); }
+  :root[data-theme="light"] .theme-toggle .icon-sun{ opacity: 1; transform: rotate(0deg) scale(1); }
+  :root[data-theme="light"] .theme-toggle .icon-moon{ opacity: 0; transform: rotate(-90deg) scale(0.6); }
 
   /* ---------- hero ---------- */
   .hero{
@@ -412,7 +394,6 @@
     border-radius: 2px;
     margin-bottom: 12px;
   }
-  :root[data-theme="dark"] .card .stat, @media (prefers-color-scheme: dark){ .card .stat{ color: var(--green); } }
   .card ul{ margin: 0; padding-left: 18px; }
   .card li{ margin-bottom: 4px; font-size: 14.5px; color: var(--ink-soft); }
 
@@ -529,8 +510,27 @@
     padding-bottom: 4px;
     margin-top: 6px;
   }
-  .contact-cta:hover{ color: var(--green-deep); }
-  :root[data-theme="dark"] .contact-cta:hover, @media (prefers-color-scheme: dark){ .contact-cta:hover{ color: var(--green); } }
+  .contact-cta:hover{ color: var(--green); }
+
+  /* ---------- publications ---------- */
+  .pub-list{ list-style: none; padding: 0; margin: 0; display: grid; gap: 20px; }
+  .pub{
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--green);
+    background: var(--bg-card);
+    padding: 22px 24px;
+  }
+  .pub-title{
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    margin: 0 0 8px;
+  }
+  .pub-title a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+  .pub-title a:hover{ border-color: var(--green); }
+  .pub-authors{ font-size: 14.5px; color: var(--ink-soft); margin: 0 0 6px; }
+  .pub-authors strong{ color: var(--ink); }
+  .pub-venue{ font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-faint); margin: 0; }
+  .pub-venue a{ color: var(--ink-faint); }
   .contact-list{
     list-style: none;
     padding: 0;
@@ -576,7 +576,7 @@
         <a href="#education" class="navlink" data-target="education"><span class="stage">VE</span><span class="label">Roots</span></a>
         <a href="#research" class="navlink" data-target="research"><span class="stage">V6 · R1</span><span class="label">Growth</span></a>
         <a href="#projects" class="navlink" data-target="projects"><span class="stage">R6</span><span class="label">Harvest</span></a>
-        <a href="/blog/" class="navlink"><span class="stage">LOG</span><span class="label">Blog</span></a>
+        <a href="#publications" class="navlink" data-target="publications"><span class="stage">R8</span><span class="label">Published</span></a>
         <a href="#contact" class="navlink" data-target="contact"><span class="stage">→</span><span class="label">Contact</span></a>
       </div>
       <div class="fieldnav-fade" id="fieldnav-fade" aria-hidden="true"></div>
@@ -585,7 +585,10 @@
       <a class="icon-link" href="https://github.com/Tess-Kern" aria-label="GitHub" title="GitHub">
         <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
       </a>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+      <a class="icon-link" href="https://orcid.org/0009-0006-2960-0829" aria-label="ORCID" title="ORCID">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 17.66H5.92V7.63h1.45v10.03zM6.64 6.81a.95.95 0 1 1 0-1.9.95.95 0 0 1 0 1.9zm3.18.82h3.92c3.73 0 5.37 2.67 5.37 5.02 0 2.56-2.02 5.02-5.35 5.02H9.82V7.63zm1.45 1.3v7.43h2.31c3.29 0 4.05-2.5 4.05-3.72 0-1.98-1.27-3.71-4.06-3.71h-2.3z"/></svg>
+      </a>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="true">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"/></svg>
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
       </button>
@@ -595,12 +598,13 @@
 
 <header class="hero" id="home">
   <div class="hero-inner">
-    <p class="eyebrow">Crop Modeling · Plant Breeding · Data Science</p>
+    <p class="eyebrow">Quantitative Genetics · Plant Breeding · Crop Modeling</p>
     <h1>Tess Kern</h1>
-    <p class="hero-tag">I study crops in the field and in the data — phenotyping, breeding trials, and the models that help make sense of them. Now a Ph.D. student at the University of Illinois Urbana-Champaign, working on crop modeling and genomic prediction.</p>
+    <p class="hero-tag">I am professionally curious, studying how…</p>
     <div class="hero-meta">
       <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M15 6l6 6-6 6"/></svg> Champaign-Urbana, IL</span>
-      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> <a href="mailto:tessk2@illinois.edu">tessk2@illinois.edu</a> · <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> <a href="mailto:tessk2@illinois.edu">tessk2@illinois.edu</a></span>
+      <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 8v8M9 6v.01M12 8h2a4 4 0 010 8h-2z"/></svg> ORCID <a href="https://orcid.org/0009-0006-2960-0829">0009-0006-2960-0829</a></span>
       <span><svg class="mark" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/></svg> B.S. Agronomy, Iowa State '23</span>
     </div>
   </div>
@@ -619,9 +623,9 @@
     <p class="eyebrow">Seed — Before the First Leaf</p>
     <h2>About</h2>
     <div class="prose">
-      <p>I am a Ph.D. graduate student at The University of Illinois Urbana-Champaign. I work in a quantitative genetics lab studying crop modeling and genomic prediction in perennial sorghum and other crops, and take classes.</p>
-      <p>I am interested in answering questions related to stochastic modeling, and unraveling complex genomes to better understand agronomic traits.</p>
-      <p>I aim to assist breeding programs with the use of large genomic datasets.</p>
+      <p>I am a Ph.D. student at The University of Illinois Urbana-Champaign. I work in a quantitative genetics lab studying breeding simulations and crop modeling in perennial sorghum and other crops, as well as take classes.</p>
+      <p>I am interested in answering questions related to stochastic modeling, and unraveling complex genomes to better understand agronomic traits like perenniality.</p>
+      <p>I aim to assist breeding programs with the integration of virtual plant populations to enhance crop modeling efforts.</p>
     </div>
   </div>
 </section>
@@ -637,10 +641,9 @@
       <div class="card">
         <h3>University of Illinois Urbana-Champaign</h3>
         <div class="place">Champaign-Urbana, IL</div>
-        <span class="stat">M.S. / Ph.D. · Aug 2026–present</span>
+        <span class="stat">Aug 2026–present</span>
         <ul>
           <li>Crop Sciences — Quantitative Genetics</li>
-          <li>Crop modeling and genomic prediction in perennial sorghum and other crops</li>
         </ul>
       </div>
       <div class="card">
@@ -777,19 +780,34 @@
    </div>
   </section>
 
+  <section id="publications" class="reveal">
+   <div class="wrap-wide">
+    <p class="eyebrow">R8 — Full Maturity</p>
+    <h2>Published Work</h2>
+    <p class="section-sub">Peer-reviewed and in print. More coming soon.</p>
+    <ul class="pub-list">
+      <li class="pub">
+        <p class="pub-title"><a href="https://link.springer.com/article/10.1007/s00122-026-05348-w">Genetic determinants of aerial root morphology in Sierra Mixe-derived maize</a></p>
+        <p class="pub-authors">Daniel Laspisa, Rubens Diogo, Rafael E. Venado, <strong>Tess Kern</strong>, Natalia de Leon, Jean-Michel Ané, Jason G. Wallace</p>
+        <p class="pub-venue"><em>Theoretical and Applied Genetics</em> 139, 260 (2026) · <a href="https://doi.org/10.1007/s00122-026-05348-w">doi:10.1007/s00122-026-05348-w</a></p>
+      </li>
+    </ul>
+   </div>
+  </section>
+
   <section id="contact" class="contact-section reveal">
    <div class="wrap-wide">
     <p class="eyebrow">Next Planting</p>
     <h2>Let's grow something</h2>
     <div class="contact-grid">
       <div class="contact-main">
-        <p>I'm a Ph.D. student at the University of Illinois Urbana-Champaign, working on crop modeling and genomic prediction — always glad to talk about perennial sorghum, stochastic modeling, or a genome that needs unraveling.</p>
+        <p>I'm a Ph.D. student at the University of Illinois Urbana-Champaign, working on virtual plant populations and applying GEBV to crop models. I am always glad to talk about perennial sorghum, stochastic modeling, or a genome that needs unraveling.</p>
         <a class="contact-cta" href="mailto:tessk2@illinois.edu">tessk2@illinois.edu</a>
       </div>
       <ul class="contact-list">
-        <li>Also at <a href="mailto:Kerntess@gmail.com">Kerntess@gmail.com</a></li>
+        <li>ORCID <a href="https://orcid.org/0009-0006-2960-0829">0009-0006-2960-0829</a></li>
         <li>Based in Champaign-Urbana, IL</li>
-        <li>Quantitative genetics lab — crop modeling &amp; genomic prediction</li>
+        <li>Quantitative genetics lab — breeding simulations &amp; crop modeling</li>
         <li>Outside the field: traveling to new cultures, kayaking and biking with family, watching movies, and learning and performing hip-hop dances</li>
       </ul>
     </div>
@@ -806,13 +824,9 @@
 (function(){
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
-  var media = window.matchMedia('(prefers-color-scheme: dark)');
 
   function isDark(){
-    var explicit = root.getAttribute('data-theme');
-    if (explicit === 'dark') return true;
-    if (explicit === 'light') return false;
-    return media.matches;
+    return root.getAttribute('data-theme') !== 'light';
   }
   function syncToggle(){
     var dark = isDark();
@@ -821,11 +835,11 @@
   }
   toggle.addEventListener('click', function(){
     var next = isDark() ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    if (next === 'light') root.setAttribute('data-theme', 'light');
+    else root.removeAttribute('data-theme');
     try{ localStorage.setItem('tk-theme', next); }catch(e){}
     syncToggle();
   });
-  media.addEventListener('change', syncToggle);
   syncToggle();
 
   var navScroll = document.getElementById('fieldnav-inner');

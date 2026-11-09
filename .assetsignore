@@ -12,3 +12,5 @@ wrangler.toml
 blog-src
 blog-src/**
 BLOG.md
+blog
+blog/**
