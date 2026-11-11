@@ -14,8 +14,11 @@
 <meta property="og:title" content="Tess Kern" />
 <meta property="og:description" content="Ph.D. student at the University of Illinois Urbana-Champaign — breeding simulations and crop modeling in perennial sorghum and other crops." />
 <meta property="og:url" content="https://tesskern.com/" />
-<meta property="og:image" content="https://tesskern.com/favicon.svg" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:image" content="https://tesskern.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Tess Kern — Quantitative Genetics · Plant Breeding · Crop Modeling" />
+<meta name="twitter:card" content="summary_large_image" />
 <script>
   try{
     var tkt = localStorage.getItem('tk-theme');
@@ -450,6 +453,32 @@
   .plot ul{ margin: 0; padding-left: 18px; }
   .plot li{ font-size: 14px; color: var(--ink-soft); margin-bottom: 6px; }
   .plot li:last-child{ margin-bottom: 0; }
+  .plot li strong{ color: var(--ink); font-weight: 600; }
+  .plot-wide{ grid-column: 1 / -1; }
+
+  .awards{ margin-top: 40px; }
+  .awards h3{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+  .awards ul{ margin: 0; padding-left: 18px; }
+  .awards li{ font-size: 14.5px; color: var(--ink-soft); }
+
+  .tools{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; padding: 0; list-style: none; }
+  .tools li{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--green);
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-card);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
 
   /* ---------- projects ---------- */
   .proj-grid{
@@ -627,6 +656,11 @@
       <p>I am interested in answering questions related to stochastic modeling, and unraveling complex genomes to better understand agronomic traits like perenniality.</p>
       <p>I aim to assist breeding programs with the integration of virtual plant populations to enhance crop modeling efforts.</p>
     </div>
+    <ul class="tools" aria-label="Tools">
+      <li>R</li>
+      <li>Python</li>
+      <li>APSIM X</li>
+    </ul>
   </div>
 </section>
 
@@ -641,7 +675,7 @@
       <div class="card">
         <h3>University of Illinois Urbana-Champaign</h3>
         <div class="place">Champaign-Urbana, IL</div>
-        <span class="stat">Aug 2026–present</span>
+        <span class="stat">Graduate Student · Aug 2026–present</span>
         <ul>
           <li>Crop Sciences — Quantitative Genetics</li>
         </ul>
@@ -673,7 +707,7 @@
    <div class="wrap-wide">
     <p class="eyebrow">V6 · R1 — Growth &amp; Flowering</p>
     <h2>Research Experience</h2>
-    <p class="section-sub">Seven field seasons, five labs, one running question: how do we breed better plants faster.</p>
+    <p class="section-sub">Seven positions across academia and industry, one running question: how do we breed better plants faster?</p>
 
     <div class="plots">
       <article class="plot" data-plot="2025–26">
@@ -681,8 +715,9 @@
         <p class="plot-org">Ané Lab, University of Wisconsin–Madison</p>
         <p class="plot-meta">Madison, WI · Oct 2025–Aug 2026</p>
         <ul>
-          <li>Managed a team of 15 undergraduates through in-field phenotyping of corn aerial roots.</li>
+          <li>Led a team of 15 undergraduates through in-field phenotyping of corn aerial roots.</li>
           <li>Wrote a literature review on aerial root development and the key genes driving initiation and growth.</li>
+          <li><a href="#publications">Co-author, <em>Theoretical and Applied Genetics</em> (2026) →</a></li>
         </ul>
       </article>
 
@@ -691,8 +726,8 @@
         <p class="plot-org">Arti Singh Lab, Iowa State University</p>
         <p class="plot-meta">Ames, IA · Jan–May &amp; Sep–Dec 2023</p>
         <ul>
-          <li>Collected and organized ground-truth data for a supervised learning project characterizing mungbean pod length and count; supervised prior image annotations for the model.</li>
-          <li>Cut sample time from 15 minutes to 8 by splitting and overlapping tasks — reshaping the project timeline.</li>
+          <li>Built the ground-truth dataset for a supervised learning model measuring mungbean pod length and count, and supervised the image annotations behind it.</li>
+          <li>Cut sample time from 15 minutes to 8 by splitting and overlapping tasks, shortening the project timeline.</li>
         </ul>
       </article>
 
@@ -701,32 +736,8 @@
         <p class="plot-org">Ciampitti Lab, Kansas State University</p>
         <p class="plot-meta">Manhattan, KS · May–Aug 2023</p>
         <ul>
-          <li>Wrangled data and built statistical programming skills for an end-of-summer poster presentation.</li>
-          <li>Compiled 20 years of Corn Belt yield data from yearly reports; analyzed corn vs. soybean yield trends in R.</li>
-          <li>1st, Herbicide ID &amp; 1st, Undergrad Team — Western Weed Science Society, National Weed Science Society meet, Union City, TN — practicing on-farm problem solving along the way.</li>
-        </ul>
-      </article>
-
-      <article class="plot" data-plot="2022">
-        <p class="plot-role">Cropping Systems Intern</p>
-        <p class="plot-org">Corteva Agriscience</p>
-        <p class="plot-meta">York, NE · May–Dec 2022</p>
-        <ul>
-          <li>Oversaw 5 fields (3–10 acres each) across two states — sampling, notes, and action plans built with growers and station leads — leading teams collecting soil and plant data through 680 plots.</li>
-          <li>Organized 1,470 rye breeding accessions across two locations; managed all breeder communication.</li>
-          <li>Collaborated on a soybean single-seed heritability study.</li>
-          <li>Coordinated a farmer field day showcasing the perennial ground cover project.</li>
-        </ul>
-      </article>
-
-      <article class="plot" data-plot="2021">
-        <p class="plot-role">Integrated Field Sciences Intern</p>
-        <p class="plot-org">Corteva Agriscience</p>
-        <p class="plot-meta">Johnston, IA · May–Dec 2021</p>
-        <ul>
-          <li>Investigated resistant alleles in insects for insect-resistant assays; prepped trays and dissected plants.</li>
-          <li>Harvested and processed hundreds of soybean plots; ran NIR trait analysis; operated an Almaco Harvest Pro/HP5 single-row plot harvester.</li>
-          <li>Characterized thousands of wheat samples for QTL and trait studies — prepping spikes for anther analysis and pollen counting toward hybrid wheat. Operated lab equipment including a microscope and an Elzone II particle counter.</li>
+          <li>Compiled 20 years of Corn Belt yield data from annual reports and analyzed corn vs. soybean yield trends in R.</li>
+          <li>Presented the analysis as an end-of-summer research poster.</li>
         </ul>
       </article>
 
@@ -735,20 +746,28 @@
         <p class="plot-org">Archontoulis Lab, Iowa State University</p>
         <p class="plot-meta">Ames, IA · Aug 2020–May 2021</p>
         <ul>
-          <li>Took nine-foot soil cores and subsampled for microbial analysis in support of FACTS.</li>
-          <li>Coordinated drying and C:N sample prep for corn and soybean tissue; weighed, shelled, and counted hundreds of corn samples across environments and management practices.</li>
+          <li>Collected nine-foot soil cores and subsampled them for microbial analysis in support of the lab's FACTS crop-forecasting project.</li>
+          <li>Prepared corn and soybean tissue for C:N analysis and processed hundreds of corn samples across environments and management practices.</li>
         </ul>
       </article>
 
-      <article class="plot" data-plot="2020">
-        <p class="plot-role">Summer Research Assistant</p>
+      <article class="plot plot-wide" data-plot="2020–22">
+        <p class="plot-role">Three internships</p>
         <p class="plot-org">Corteva Agriscience</p>
-        <p class="plot-meta">Johnston, IA · May–Aug 2020</p>
+        <p class="plot-meta">Johnston, IA &amp; York, NE · 2020–2022</p>
         <ul>
-          <li>Washed thousands of corn roots to evaluate insect trait efficacy in the research pipeline.</li>
-          <li>Inoculated and identified corn and soybean diseases — gray leaf spot, northern leaf blight, anthracnose, white mold — in large field trials.</li>
+          <li><strong>Cropping Systems Intern, 2022:</strong> organized 1,470 rye breeding accessions across two locations and led teams collecting soil and plant data across 680 plots in two states.</li>
+          <li><strong>Integrated Field Sciences Intern, 2021:</strong> characterized thousands of wheat samples for QTL and trait studies toward hybrid wheat, and ran NIR trait analysis on harvested soybean plots.</li>
+          <li><strong>Summer Research Assistant, 2020:</strong> inoculated and identified corn and soybean diseases in large field trials.</li>
         </ul>
       </article>
+    </div>
+
+    <div class="awards">
+      <h3>Awards</h3>
+      <ul>
+        <li>1st place, Herbicide ID &amp; 1st place, Undergraduate Team · Weed Science Society contest, Union City, TN</li>
+      </ul>
     </div>
    </div>
   </section>
@@ -773,7 +792,7 @@
         <h3>How to Win in Baseball</h3>
         <ul>
           <li>Three-person team studying which game-day variables predict a winning outcome.</li>
-          <li>Rebuilt Billy Beane and Peter Brand's 'Moneyball' approach on the Oakland A's dataset — 86% accuracy predicting MLB playoff chances with a random forest model in Python.</li>
+          <li>Rebuilt Billy Beane and Paul DePodesta's 'Moneyball' approach on the Oakland A's dataset — 86% accuracy predicting MLB playoff chances with a random forest model in Python.</li>
         </ul>
       </div>
     </div>
