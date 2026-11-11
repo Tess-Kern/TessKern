@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <script>
   try{
-    var tkt = localStorage.getItem('tk-theme');
+    var tkt = localStorage.getItem('tk-theme-v2');
     if (tkt === 'light') document.documentElement.setAttribute('data-theme', tkt);
   }catch(e){}
 </script>
@@ -334,7 +334,7 @@
   }
   .hero-glyph{
     position: absolute;
-    right: 28px;
+    right: max(28px, calc((100% - var(--wide-w)) / 2 + 28px));
     top: 50%;
     transform: translateY(-50%);
     transform-origin: 50% 100%;
@@ -871,7 +871,7 @@
     var next = isDark() ? 'light' : 'dark';
     if (next === 'light') root.setAttribute('data-theme', 'light');
     else root.removeAttribute('data-theme');
-    try{ localStorage.setItem('tk-theme', next); }catch(e){}
+    try{ localStorage.setItem('tk-theme-v2', next); }catch(e){}
     syncToggle();
   });
   syncToggle();
