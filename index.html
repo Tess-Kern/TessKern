@@ -338,7 +338,8 @@
     top: 50%;
     transform: translateY(-50%);
     transform-origin: 50% 100%;
-    width: 128px;
+    width: 112px;
+    margin-top: -18px;
     opacity: 0.9;
     animation: sway 7s ease-in-out infinite alternate;
   }
@@ -583,11 +584,28 @@
   .contact-list a{ color: var(--ink-soft); }
 
   footer{
-    padding: 30px 0 46px;
+    padding: 40px 0 46px;
     text-align: center;
     font-size: 13px;
     color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
   }
+  .footer-leaf{ width: 22px; margin: 0 auto 16px; opacity: 0.9; }
+  .footer-links{ display: flex; justify-content: center; gap: 10px; margin-bottom: 14px; }
+  .footer-links .icon-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    background: var(--bg-card);
+    color: var(--ink-soft);
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .footer-links .icon-link:hover{ border-color: var(--green); color: var(--ink); }
+  footer p{ margin: 0; }
 
   .reveal{
     opacity: 0.15;
@@ -851,7 +869,26 @@
 </main>
 
 <footer>
-  Tess Kern · tesskern.com
+  <svg class="footer-leaf" viewBox="0 0 100 200" fill="none" aria-hidden="true">
+    <path d="M50 190 C 48 140, 48 90, 50 20" stroke="var(--green)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 150 C 30 140, 15 120, 10 95 C 35 100, 48 118, 50 150 Z" fill="var(--green)" opacity="0.75"/>
+    <path d="M50 120 C 70 108, 85 88, 90 62 C 65 68, 51 88, 50 120 Z" fill="var(--green)" opacity="0.55"/>
+    <path d="M50 90 C 32 80, 20 62, 16 40 C 38 44, 49 62, 50 90 Z" fill="var(--green)" opacity="0.75"/>
+    <path d="M50 60 C 66 50, 78 34, 82 15 C 60 18, 51 34, 50 60 Z" fill="var(--green)" opacity="0.55"/>
+    <circle cx="50" cy="18" r="6" fill="var(--gold)"/>
+  </svg>
+  <div class="footer-links">
+    <a class="icon-link" href="https://github.com/Tess-Kern" aria-label="GitHub" title="GitHub">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <a class="icon-link" href="https://orcid.org/0009-0006-2960-0829" aria-label="ORCID" title="ORCID">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 17.66H5.92V7.63h1.45v10.03zM6.64 6.81a.95.95 0 1 1 0-1.9.95.95 0 0 1 0 1.9zm3.18.82h3.92c3.73 0 5.37 2.67 5.37 5.02 0 2.56-2.02 5.02-5.35 5.02H9.82V7.63zm1.45 1.3v7.43h2.31c3.29 0 4.05-2.5 4.05-3.72 0-1.98-1.27-3.71-4.06-3.71h-2.3z"/></svg>
+    </a>
+    <a class="icon-link" href="mailto:tessk2@illinois.edu" aria-label="Email" title="tessk2@illinois.edu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    </a>
+  </div>
+  <p>Tess Kern · tesskern.com</p>
 </footer>
 
 <script>
